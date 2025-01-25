@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+  namespace: argocd
+spec:
+  project: sample-project
+  source:
+    repoURL: https://github.com/ADNANFAKHAR4504/argocd-minikube-demo
+    targetRevision: main
+    path: manifests/sample
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
